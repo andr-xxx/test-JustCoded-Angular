@@ -1,11 +1,6 @@
-
-
-
 <div>
-  <h1>directive work</h1>
-  <h1>TotalPersons: {{totalPersons.total}}</h1>
-  <h2 ng-if = "totalPersons.superPower">with SuperPower {{totalPersons.superPower}}</h2>
-  <h2 ng-if = "totalPersons.rich">Rich {{totalPersons.rich}}</h2>
-  <h2 ng-if = "totalPersons.genious">Genious {{totalPersons.genious}}</h2>
-  {{ zen }}
+  <h4>TotalPersons: {{totalPersons.total}}</h4>
+  <h5>{{totalPersons.superPower ? "with SuperPower" + ' ' + totalPersons.superPower : null}}</h5>
+  <h5>{{totalPersons.rich ? "Rich" + ' ' + totalPersons.rich : null}}</h5>
+  <h5 ng-if="totalPersons.genious">Genious {{totalPersons.genious}}</h5>
 </div>

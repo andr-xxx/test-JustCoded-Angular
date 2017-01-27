@@ -1,32 +1,36 @@
-app.service('mainBarService', function () {
-  that = this;
-  let persons = [];
-  let totalPersons = {};
+app.service('mainBarService', function ($interval) {
+    const that = this;
+    let persons = [];
+    let totalPersonsStatistics = {};
 
-  that.addPerson = function (person) {
-    persons.push(person);
-  };
-
-  that.getPersons = function () {
-    console.log (persons)
-    return persons;
-  };
-
-  that.deletePerson = function (index) {
-    persons.splice(index, 1);
-  };
-
-  that.changeSuperHeroValues = function () {
-    totalPersons = {
-      superPower: 0,
-      rich: 0,
-      genious: 0
+    that.addPerson = function (person) {
+        persons.push(person);
+        that.changeSuperHeroValues();
     };
-    totalPersons.total = persons.length;
-    persons.forEach((item) => {
-      for (let key in item) {
-        totalPersons[key] += item[key]
-      }
-    });
-  }
-})
+
+    that.getPersons = function () {
+        return persons;
+    };
+
+    that.totalPersonsStatistics = function () {
+        return totalPersonsStatistics;
+    };
+
+    that.deletePerson = function (index) {
+        persons.splice(index, 1);
+        that.changeSuperHeroValues();
+    };
+
+    that.changeSuperHeroValues = function () {
+        totalPersonsStatistics.superPower = 0;
+        totalPersonsStatistics.rich = 0;
+        totalPersonsStatistics.genious = 0;
+        totalPersonsStatistics.total = persons.length;
+        persons.forEach((item) => {
+            for (let key in item) {
+                if (key === 'name') continue;
+                totalPersonsStatistics[key] += item[key]
+            }
+        });
+    };
+});
